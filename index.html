@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanderly – Travel Package Booking Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#top">Wanderly</a>
+  <nav><a href="#catalogue">Destinations</a><a href="#book">Plan a trip</a><a href="#saved">My enquiries</a></nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <h1>Pick a place.<br>See the price before you pack.</h1>
+    <p class="lead">Browse ready-made packages, set your group size and add-ons, and send a booking enquiry in a minute.</p>
+    <div class="board" aria-live="off">
+      <span class="board-label">Next stop</span>
+      <span class="flap" id="flap">GOA</span>
+      <span class="board-from" id="flapPrice"></span>
+    </div>
+    <div class="search"><input id="q" type="search" placeholder="Search Goa, Bali, mountains…" aria-label="Search destinations"></div>
+  </section>
+
+  <section id="catalogue" class="wrap">
+    <h2>Destination catalogue</h2>
+    <div id="chips" class="chips" role="tablist"></div>
+    <div id="grid" class="grid"></div>
+    <p id="empty" class="empty" hidden>No destination matches that search. Try “beach” or clear the filter.</p>
+  </section>
+
+  <section id="book" class="wrap">
+    <h2>Build your package</h2>
+    <div class="book">
+      <form id="form" novalidate>
+        <fieldset>
+          <legend>Destination</legend>
+          <select id="dest" aria-label="Destination"></select>
+        </fieldset>
+        <fieldset>
+          <legend>Package</legend>
+          <div id="tiers" class="tiers"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Travellers and dates</legend>
+          <div class="row">
+            <div class="stepper"><label>Adults</label><div><button type="button" data-k="a" data-d="-1" aria-label="Fewer adults">−</button><output id="a">2</output><button type="button" data-k="a" data-d="1" aria-label="More adults">+</button></div></div>
+            <div class="stepper"><label>Children (under 12)</label><div><button type="button" data-k="c" data-d="-1" aria-label="Fewer children">−</button><output id="c">0</output><button type="button" data-k="c" data-d="1" aria-label="More children">+</button></div></div>
+            <div class="field"><label for="date">Departure date</label><input id="date" type="date"><small class="err" id="e-date"></small></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Extras</legend>
+          <div id="addons" class="addons"></div>
+          <div class="coupon"><input id="coupon" placeholder="Promo code (try WANDER10)" aria-label="Promo code"><button type="button" id="applyCoupon" class="ghost">Apply code</button></div>
+          <small id="couponMsg" class="hint"></small>
+        </fieldset>
+        <fieldset>
+          <legend>Your details</legend>
+          <div class="row">
+            <div class="field"><label for="name">Full name</label><input id="name" autocomplete="name"><small class="err" id="e-name"></small></div>
+            <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email"><small class="err" id="e-email"></small></div>
+            <div class="field"><label for="phone">Mobile number</label><input id="phone" inputmode="numeric" maxlength="10" placeholder="10 digits"><small class="err" id="e-phone"></small></div>
+          </div>
+          <div class="field"><label for="note">Special requests (optional)</label><textarea id="note" rows="2" maxlength="200"></textarea></div>
+        </fieldset>
+        <button class="btn" type="submit">Send booking enquiry</button>
+      </form>
+
+      <aside class="pass" id="pass" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <section id="saved" class="wrap">
+    <h2>My enquiries</h2>
+    <div id="list" class="list"></div>
+  </section>
+</main>
+
+<footer>Wanderly is a simulator. No payment is taken and no real booking is made.</footer>
+
+<div id="modal" class="modal" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <div class="stamp">Enquiry sent</div>
+    <h3 id="mt"></h3>
+    <p id="mb"></p>
+    <button class="btn" id="close">Plan another trip</button>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
